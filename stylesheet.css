@@ -220,7 +220,7 @@ img:hover {
     margin-top: 10px;
     line-height: 20px;
     text-indent: 10px;
-    width: 600px;
+    width: 500px;
    
 
 }
@@ -468,7 +468,7 @@ form label {
     
 
 
-@media (max-width: 768px) {
+@media (max-width: 868px) {
     body {
         flex-direction: column;
         flex-wrap: wrap;
@@ -534,7 +534,8 @@ form label {
         display: inline;
         margin: 0 9px;
         
-        padding: 3px;
+        padding: 1px;
+        margin-left: 0px;
         
         
     }
