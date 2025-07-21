@@ -1,0 +1,1204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rajesh's Portfolio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #6c5ce7;
+            --secondary-color: #a29bfe;
+            --dark-color: #2d3436;
+            --light-color: #f5f6fa;
+            --accent-color: #fd79a8;
+            --text-color: #636e72;
+            --card-bg: #ffffff;
+            --shadow: 0 10px 20px rgba(0,0,0,0.1);
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            font-size: 16px;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--light-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            transition: var(--transition);
+        }
+
+        header.scrolled {
+            padding: 0.5rem 0;
+            background-color: rgba(108, 92, 231, 0.95);
+            backdrop-filter: blur(5px);
+        }
+
+        nav ul {
+            list-style-type: none;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 0 1rem;
+        }
+
+        nav ul li {
+            margin: 0 1.5rem;
+            position: relative;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+            padding: 0.5rem 0;
+            display: inline-block;
+        }
+
+        nav ul li::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: white;
+            transition: var(--transition);
+        }
+
+        nav ul li:hover::after {
+            width: 100%;
+        }
+
+        section {
+            padding: 5rem 2rem;
+            margin: 0 auto;
+            max-width: 1200px;
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: var(--dark-color);
+            position: relative;
+            text-align: center;
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+            border-radius: 2px;
+        }
+
+        h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--dark-color);
+        }
+
+        h4, h5 {
+            font-weight: 500;
+            color: var(--dark-color);
+        }
+
+        p {
+            margin-bottom: 1rem;
+            color: var(--text-color);
+        }
+
+        /* About Section */
+        #about {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-top: 4rem;
+            animation: fadeIn 1s ease-out;
+            text-align: justify;
+        }
+
+        #img1 {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 1rem;
+        }
+
+        #img1 img {
+            width: 300px;
+            height: 350px;
+            object-fit: cover;
+            border-radius: 10%;
+            border: 5px solid var(--primary-color);
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            animation: float 3s ease-in-out infinite;
+        }
+
+        #img1 img:hover {
+            transform: scale(1.05) rotate(5deg);
+        }
+
+        #self {
+            flex: 1.5;
+            padding: 2rem;
+        }
+
+        #self h2 {
+            text-align: left;
+        }
+
+        #self h2::after {
+            left: 0;
+            transform: none;
+        }
+
+        #self h5 {
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+            color: var(--primary-color);
+        }
+
+        /* Experience Section */
+        #experience {
+            background-color: var(--card-bg);
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+            margin: 2rem auto;
+            padding: 2rem;
+            animation: slideInLeft 1s ease-out;
+        }
+
+        .exp {
+            margin-bottom: 2rem;
+        }
+
+        .exp h3 {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .exp h3 span {
+            font-size: 1rem;
+            color: var(--primary-color);
+            background-color: var(--secondary-color);
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+        }
+
+        .exp h5 {
+            color: var(--accent-color);
+            margin-bottom: 1rem;
+        }
+
+        /* Projects Section */
+        #projects {
+            background-color: var(--light-color);
+        }
+
+        .projects-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .project-card {
+            background-color: var(--card-bg);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            transform: translateY(20px);
+            opacity: 0;
+            animation: fadeInUp 0.5s ease-out forwards;
+        }
+
+        .project-card:nth-child(1) { animation-delay: 0.1s; }
+        .project-card:nth-child(2) { animation-delay: 0.3s; }
+        .project-card:nth-child(3) { animation-delay: 0.5s; }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+        }
+
+        .project-img {
+            height: 200px;
+            overflow: hidden;
+        }
+
+        .project-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .project-card:hover .project-img img {
+            transform: scale(1.1);
+        }
+
+        .project-content {
+            padding: 1.5rem;
+            text-align: left;
+        }
+
+        .project-content h3 {
+            margin-bottom: 0.5rem;
+            color: var(--primary-color);
+        }
+
+        .project-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .project-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.5rem 1rem;
+            background-color: var(--primary-color);
+            color: white;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .project-links a:hover {
+            background-color: var(--dark-color);
+            transform: translateY(-3px);
+        }
+
+        /* Education Section */
+        #education {
+            background-color: var(--card-bg);
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+        }
+
+        .education-item {
+            background-color: white;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: var(--transition);
+            animation: fadeIn 0.5s ease-out forwards;
+            opacity: 0;
+        }
+
+        .education-item:nth-child(1) { animation-delay: 0.2s; }
+        .education-item:nth-child(2) { animation-delay: 0.4s; }
+
+        .education-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+
+        .education-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.5rem;
+        }
+
+        .education-header h4 {
+            color: var(--primary-color);
+        }
+
+        .education-header span {
+            background-color: var(--secondary-color);
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+        }
+
+/* Skills Section */
+#skills {
+    background-color: var(--light-color);
+}
+
+.skills-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.skill-category {
+    background-color: var(--card-bg);
+    border-radius: 10px;
+    padding: 1.5rem;
+    box-shadow: var(--shadow);
+    transition: var(--transition);
+    transform: scale(0.95);
+    opacity: 0;
+    animation: fadeIn 0.5s ease-out forwards;
+}
+
+.skill-category:nth-child(1) { animation-delay: 0.1s; }
+.skill-category:nth-child(2) { animation-delay: 0.2s; }
+.skill-category:nth-child(3) { animation-delay: 0.3s; }
+.skill-category:nth-child(4) { animation-delay: 0.4s; }
+
+.skill-category:hover {
+    transform: scale(1.02);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+}
+
+.skill-category h3 {
+    color: var(--primary-color);
+    margin-bottom: 1.5rem;
+    text-align: center;
+    position: relative;
+    padding-bottom: 0.5rem;
+}
+
+.skill-category h3::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 50px;
+    height: 2px;
+    background-color: var(--accent-color);
+}
+
+.skill-list {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0.8rem;
+}
+
+.skill-item {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    padding: 0.8rem 1rem;
+    background-color: rgba(108, 92, 231, 0.05);
+    border-radius: 8px;
+    transition: var(--transition);
+    border: 1px solid rgba(108, 92, 231, 0.1);
+}
+
+.skill-item:hover {
+    background-color: rgba(108, 92, 231, 0.1);
+    transform: translateX(5px);
+    border-color: rgba(108, 92, 231, 0.2);
+}
+
+.skill-item i {
+    font-size: 1.2rem;
+    color: var(--primary-color);
+    width: 24px;
+    text-align: center;
+}
+
+.skill-item span {
+    font-weight: 500;
+    color: var(--dark-color);
+    font-size: 0.95rem;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .skills-container {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media (max-width: 576px) {
+    .skills-container {
+        grid-template-columns: 1fr;
+    }
+    
+    .skill-list {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+@media (max-width: 576px) {
+    .skills-container {
+        grid-template-columns: 1fr;
+    }
+}
+        /* Contact Section */
+        #contact {
+            background-color: var(--card-bg);
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+        }
+
+        .contact-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .contact-info {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .contact-card {
+            background-color: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: var(--transition);
+        }
+
+        .contact-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+
+        .contact-card i {
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            margin-right: 1rem;
+        }
+
+        .contact-form {
+            flex: 1;
+            min-width: 300px;
+            background-color: white;
+            border-radius: 10px;
+            padding: 2rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: var(--dark-color);
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-family: 'Poppins', sans-serif;
+            transition: var(--transition);
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(108, 92, 231, 0.2);
+        }
+
+        .submit-btn {
+            background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+            color: white;
+            border: none;
+            padding: 0.8rem 2rem;
+            border-radius: 5px;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 500;
+            cursor: pointer;
+            transition: var(--transition);
+            box-shadow: 0 5px 15px rgba(108, 92, 231, 0.3);
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(108, 92, 231, 0.4);
+        }
+
+        .submit-btn:active {
+            transform: translateY(0);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .social-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: var(--primary-color);
+            color: white;
+            border-radius: 50%;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .social-link:hover {
+            transform: translateY(-5px) scale(1.1);
+            background-color: var(--accent-color);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--dark-color);
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 3rem;
+        }
+
+        .footer-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 1.5rem;
+            margin: 1rem 0;
+        }
+
+        .footer-links a {
+            color: white;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .footer-links a:hover {
+            color: var(--accent-color);
+        }
+
+        .copyright {
+            margin-top: 1rem;
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+            100% { transform: translateY(0px); }
+        }
+
+        /* Scroll Indicator */
+        .scroll-indicator {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 50px;
+            height: 50px;
+            background-color: var(--primary-color);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+            z-index: 999;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .scroll-indicator.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .scroll-indicator:hover {
+            background-color: var(--accent-color);
+            transform: translateY(-5px);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            #about {
+                flex-direction: column;
+                
+                text-align: justify;
+            }
+
+            #self h2 {
+                text-align: center;
+                
+            }
+
+            #self h2::after {
+                left: 50%;
+                transform: translateX(-50%);
+            }
+
+            #img1 img {
+                width: 250px;
+                height: 250px;
+                margin-bottom: 2rem;
+            }
+
+            .projects-container {
+                grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            }
+
+            
+        }
+
+        @media (max-width: 768px) {
+            html {
+                font-size: 14px;
+            }
+
+            section {
+                padding: 3rem 1.5rem;
+            }
+
+            h2 {
+                font-size: 2rem;
+                margin-bottom: 2rem;
+            }
+
+            nav ul li {
+                margin: 0 0.8rem;
+            }
+
+            .contact-container {
+                flex-direction: column;
+            }
+
+            .contact-info, .contact-form {
+                width: 100%;
+            }
+        }
+
+        @media (max-width: 576px) {
+            nav ul {
+                flex-wrap: wrap;
+            }
+
+            nav ul li {
+                margin: 0.5rem;
+            }
+
+            #img1 img {
+                width: 200px;
+                height: 200px;
+            }
+
+            .projects-container {
+                grid-template-columns: 1fr;
+            }
+
+            .skills-container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header id="header">
+        <nav>
+            <ul>
+                <li><a href="#about">About</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#education">Education</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- About Section -->
+    <section id="about">
+        <div id="img1">
+            <img src="./images/WhatsApp Image 2025-07-21 at 07.59.37_4dcf0939.jpg" alt="Rajesh's Profile Picture">
+        </div>
+        <div id="self">
+            <h2>CHALLA RAJESH</h2>
+            <h5>MERN Stack Developer | Machine Learning Enthusiast</h5>
+            <p>I'm a dedicated MERN Stack Developer currently pursuing a B.Tech in Artificial Intelligence and Machine Learning at SRKR Engineering College. With a strong foundation in both programming and web development, I specialize in building dynamic, responsive full-stack applications.</p>
+            <p>My passion for technology started with a curiosity about how systems work, which has grown into a drive to create impactful digital solutions. While front-end development is my forte, I enjoy working across the full stack and continuously exploring the intersection of web development and machine learning.</p>
+            <p>Beyond coding, I actively explore new tech trends, contribute to open-source projects, and stay updated on the latest innovations in AI and software development.</p>
+
+        </div>
+    </section>
+
+ 
+    <!-- Projects Section -->
+    <section id="projects">
+        <h2>Projects</h2>
+        <div class="projects-container">
+            <div class="project-card">
+                <div class="project-img">
+                    <img src="https://ih1.redbubble.net/image.4650640412.5813/flat,750x,075,f-pad,750x1000,f8f8f8.jpg" alt="Super Mall Project">
+                </div>
+                <div class="project-content">
+                    <h3>Pet Care Management System</h3>
+                    <p>Developed a full-stack web application for managing pet health records, appointments, and veterinary contacts..</p>
+                    <div class="project-links">
+                        
+                        <a href="https://github.com/rajesh08114/pet-care"><i class="fab fa-github"></i> View Code</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-img">
+                    <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="E-commerce Dashboard">
+                </div>
+                <div class="project-content">
+                    <h3>E-commerce Analytics Dashboard</h3>
+                    <p>An interactive dashboard that provides merchants with insights into sales performance, customer behavior, and inventory management with real-time data visualization.</p>
+                    <div class="project-links">
+                        
+                        <a href="https://github.com/rajesh08114/data_analytics_app"><i class="fab fa-github"></i> View Code</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-img">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS61AS7kUa1bYNRSGSdnLI0vYyPYQsHT2hTUg&s" alt="ML Recommendation System">
+                </div>
+                <div class="project-content">
+                    <h3>Social App</h3>
+                    <p>Developed a full-stack social media platform inspired by social-media apps, incorporating user authentication, post creation, a follow/unfollow system, and real-time chat functionality.</p>
+                    <div class="project-links">
+                       
+                        <a href="https://github.com/rajesh08114/social_media"><i class="fab fa-github"></i> View Code</a>
+                    </div>
+                </div>
+            </div>
+             <div class="project-card">
+                <div class="project-img">
+                    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASgAAACqCAMAAAAp1iJMAAACBFBMVEX////r8/qlPThGaqXxo0+2TEFpne7v9vrzpU/a2dnt9Po1SIvY3OCnPTd3Ii7H1OY3YKBgmvCo0p+vTkiyRD+hNjesyfWvv9jqnlm70ffI2/eau/Pb6PnA1vfS4vi8x9vfllOkNS7g2N2gKSFQeLfo6vCrPC9Ugsi0zPckQo1kpPlzpvTxoEfX3uo1X5+5lH6jwvXxp1mBgbm1Vj22i3T/sn3OfFJ/b4G2Xkx0Q2goS4TEbUqoMx9cXInbjVV7ktaWpNGfosE6TY7Pk2D3o0CAWXe5YUs9dMBikN3InJzNd0bgoGNCUIyxucXNtLudTlWKs/LBjo++1MiItobrl0KMdYBodqZkUX+HR1/gjEeRRFKTUF/UhVOdQ0hdRXcdNYJuTHbB2Lw7dsvV5dOBsnZNR3+z1q7ozsDvwpiEkLbysGzt4tmKXGi9nJGQc5zV6dHFto6cHBP53sXQcTnvy6oAM4nEkW2ZdXPap36gYW+1bWt/S2S2pbLr9OmfzpKcwpd3rWqvqGvVwarukyb0vIGnc1zJhHS1TS9IOnisWFWDNlNzZIfBk5f759e7sLGSmLildW/ZrKC+fXvDYzuzb1l9nISaiJOcrbS4f1dykIkgaMWQXXGSY16nw6TgrplrlXu7URzfp3cAH3rIZCReLlyUiaWDmsyEdqVsbKebAAB0Dh2Gkqsl1lZ8AAAcUElEQVR4nO2di0PTWL7Hm1BIJtksVm4sKoppbTFDmJ1OkRkuj7E1PlqZCiuDFoGCCK101QWKggPqVUZHER/gnfUuM9xxd0edu//k/Z2TtEna9CmUe9l+x2mbpE1PPv39fufxOydYLBVVVFFFFVVUUUUVVVRRRRVVVFFFFVVUUUUVbZcoiiFSYihqp8vzf1IURZiowsoovSVVWGWVqS1VUKUrH6YKKqxCMIGYnS7nDqtATP/qRlUEpn9po8pR0+m1NDY2Ng5PBLHTBd4ZFWpOY3f37t17d4mY3Ds5vtNl3gkVaE4EsVcRQSFgYztd7HKr8Oi0pIKaZCaRZY3/a1lVweakgdp7k0KPS5N7d7rwZVThmDTX23t3DIOCxyXdqZaWsn7L/3sV1yggxhEkxOgCehi/CV6onOfm5E0LOrJbURXJSRGFAxSgGkfc0GmQfeGHvbvUF4vnRC0tjU8q7nd17+QkJnNzHEzp5tLd3QuqiDCelIoD6wJuI1CTd1GMv6nu3Olr2g4Vjwk0poHae/Xu3kkUtizJoDU5uRtjVEmckhUfdGPAhq6OEdBI3zuuYNqNkCwlc8Jk7o7dxPHpqgsqwruqOeH21U5f1darZE7j9+4Rk8koNY7BXU05405f1ZarpGYB1tj9q1eTYO4SP6NdP9+FOm9pcjc6X+mciHtXkS7cvXth8up9ZgyDUvp/S7uv5/cRnBSLUnWPwaTGlpRezU5f1pbrYzgRxIV7Y0sKp/tLBPK98SXcDt3pq9p6fRwn0PgFoDQ2fhU1Dv44TiCj2o3jnR/Nibhw/+r9n+/dv39vfJwYH1NA7b5sw8dzgqB0b/zefbAnZml8fGzpj3jfTl/XVmsrOBFEPPoff44i/fnBnx88QC9cu8yktoYTkXjY3y/1I0nwJHk8D5ndZVIlDBeYKi5ZdfJMTXl2V5TaIkwEwRhAAacYsZui1JZxIoiYZAAlx4ndY1JbFJ4UuaQMg9otWfatCk+q4rIWoTxTyr6dvsQtUfqFfjS3uCQlOS2ru3aB76W5HQPbFEHlmoKYWwwFWpZlifZ4PAkqqR28Qpdd0f5idCD9LGmcqNoq0T/QM+Ar1a6YA/tAi6p8+5I6Zi71Glq2E1TLZ3uQjtYcLFzNvWknSb/M2giLFblWYoCn9jV/bvrVn5upuQlfw2f27QVVhXS0uYjP7DeCyoBB9bCqIrWlkaL2HaRMZVqeg034GvaUE5QrHncZjjvi8YzPGEFlXGXKoFi2J1JbkvMhUBDO4/H0T2NSDofDUJ7eHQC1Nj3dpz8c6Oy8k/EZPSgTi6GuiSzrB0zil8fZgdJy6giU66H0MG4GiuvsjOrLU3aL8sjyOk9+9f33J5VjU7IcDIYfZXxGB8r0KpOeJx4/fttfukVRslVywQaDTuFSj1geynJH9yyAmnkoe5RClNWiasjBQStNd/B8B01PKceWJXooHH4C5qFsr8asMwZQWaxFVANU6/HjrVUlWtQXTr6ORqCoPkHom5miEbHQY+9prxf+f4xASbic8GVnywpqRPyhn6bX00C18fz5gYGB5La0rAOVBQHTgkGJPbeOg0qr9wBUODyUBMU9kvtn4wiURHdXV3vreKcpqMbygGIRKGxR1np/T8+TuuF6GkBx5/dU9cA7ztfV3YKSa6Cy+RTTgmL5ynFF0VI4IVCzQSgI3ROJXOaEZ0PB/gQC1U938zxXRwoX/ey3krWe56v9KVBV70wbD6B9uJnl+6h2VgrUcM9TawqUvcXOc7wKSmTFW/KRhb61V5JVWlVBZQ89ikUlQX1TYoxSXe93FsuCIDxLgPUooIaCZLCOdF9kxW8lut7b/1gDtedEZtP40KFD+/cfsyntrI+yuBSoTjcfDgbXSQxqLsLWkUlQ4Eat0pFn0VAIfC+mgMpxkYpF9SBKsdWYr1TXc5MaqL44jusYFE3TGqjqsB7U85lE+tUNXHsBT7YtcE0NFMkHec4cFPvyyK1h53RoRrKiiuZYb66rZxojSo0HWr7lK9WiDKAoq1VKqKCsOlA879a53svZ2W/sdqVR2tLYCJ5WGxE/QDDdelDVHWTK9XSg/KwoDnNCyCJb5VWK2pcTFG5GAaj6eiA10fhxoHx2OwYVg3qEIDJBkQZQ68GuyN+USPQiEnmBQLFdq6urn24bqDSL8kNpMKgpWooRuUFR2KCQRdXXv5ljW0rhlAIFwVyEYN5HxSWr7DKxKD2oPS/D4S42ooDyiaIPg1r5/ttbzdsGSmT9pqAS4Hu5QVF2hVMX8rzWUnvFGiiWxaAYsK4ZSgfqu/ZMUH+QaAAVXV01gFqJ3C4FVHItL0NlglpPxagsoFByRI4zuUBdA07+M2fP9r46fnzq+tHa0oakMkARqA2ngeK+c7tf0qagxJOy3La2NsomQX0597IEUPpiU+mgwuGw2jzIAoohPBBUc1gUNQDxqakGydbsW2yuqek9XIpNZYKCekSiQuvrpzEo4eLwYBaLEk/S9K3Aq1GWPfXkyYIodtEnPcXHqPTyGEFBO2qd43KCikGDJjsoBvldTVI2G348WAKpTFAMNBBWQ07+q/QYJUYiGaA6nNMAql0QLg+7/0RLxYMyKVE6qPb2nKBQgyaeFRQ1kLQnnWz7S5hsngEK+V4s5CTTQTkbW1oyQL3p6wNQoxx3eVj4E00XDcqkREztHgOo06KYExSBGjTZQVWx/nROoJJB0TpQqA0XEjJBQSWXCQrFqNJBmYXVdFDrIzqLOmICCho0UzksSjyTycl2oGhSJhblAlveNAHV6HJlup7g/ghQpqVNB/V6dPQ11CYIFGcKKi5LD7O2zKkXoolB1eRsn2YD1cl9Vc0/hgu/0x9+RTEMMSXJ3Tz3FerCcClQnPOF3Z4Jik+BchcPyrREOlAcBjUyooIiTUChD0wlXNmDea2Z59XYik7GACiy7slQ21BXj3/h9OlAAyga+yQEOz0eT11d9cUe/7ceTz1Zx73w+XKAGm0/JRUJyvzaUqA+BdlsNt0TfvWpXrakev+oyXiBzaagDhVrUtQ+m+kXp5UOvUKVaxZQbvdlaB4UC8q8RJpF2QpXTdPPqdOOGU9nMwNVvO8BqKLKYwqqffgSeMNWg2reV7h6m39Gi+6Rxsdd+us7YA7K1qD3PSYej7rSC5IOqnl/lmQn0v5DhjGnZh0ocU4DxYrfFQ8qa1RJgjLPo5nqWO9/WlRQyQmW6vUdzALqWPLrGYpwQSewPg6vGCTdaQ2gsuT1TLN7B1OgpH/afRqo9pHLxYPK8tPpQOF8f86fWZ1LAC3z/7KMJ0GN6c+mgrlyNo1UM6VQoho+r3mHussE0/LjdaRrA0m90H25ktcDhUIhg/HBtiNj/k+vBsphoRAoEseo0dFTAEreclBEj19s0Xig64rHYrFU4Qf8LB5dAlB/0RZb6EAxhxWDunLlSrpJHaAQpWPNEFBsr2KrDHzxG1kCHRGTua2BdFDgonHOOf1qdVXN7sH26/VfAlT6dM4UKJperG0EUG0kN+r3I1B+/wpt9RTRKc5mKgZQLBtpYSjftWs4vcvUXru2KEtTqcJXiREAxSDXaxyzLKnSgaKOYVBnrxhI4ZfNRMP+XrXzd0g5O4CiaemkDpQWyACUyxV/KMl1JPf6++8Tyl7YDgZnAw0tLUnnW9WDqmpqRpVuc6aKsKisKZMUqEQi4cegBsSIHV+KPSJ+iQf1kaZiyyssgGIafb7e3pafLeOqlsa1y+tNGtSVlPPZDn2NSdkUSjW2GrWd3rL4/PlPP/00mtKpV4GQBuqLp08HcSOc75Zk1aplKw2g2ufmBhRQMc/DVQOorNVi4aCycNKB+uniyy4FFCtiUJRdTIICZ0zMJDAo6lok0tRLaNEcfK/BrvwOVE3KoFImZTvQ8FddxLJ9TiSNG4K5k+METbPhr3SgRLFdBUVLsYYWF0iy0l5eOPXixYuGBhSmJFpK6F3vxGFzHSjCovKC6j0lfquBguiUSCymQL04cYKWZDjcSKER8aZeiz6aMw123PRmCJuO1Nlky4DanyJla24wDOQ5SZ34bgMoqNuToOjWubmJTkGAbS/JtYOzXuyamJ6efqumanvzJUCLSC7kt6iXc609AAoNlYgbfX1BSW5VQEEQ/unkS49V6kL5Pfk2AkX9RVvrBBbVgoN8MpZjWGfPKt4G3Rfq3RUV0yEDpnjc+5VebY/WkocB1OBoHc5MIYv6Q2PjrwLJq6Agnlnl1kAoEJWssh5UtpR6EVmYrNW+BkqupycmWFKA/ia7cefOEPyOGFT9s75nb+RbKiha+haD8mlr58apBkrx1UOGVpRtcX7zna0GHfj6r2fP2s4eYwzFYOZXoDOpk6y1TlCnWKgLeoNJi4pMuNNArfXdiUOhZsoPivZcdg8Oo445e8np1EAJAncrA1St1olZGgdQyFSo/UZQm9BeAlCoojx45ev9TNrwOTXfdYTWT7uXtRaTMsyyzneooET2ogFUa+uXgjDtQmM+5Qdl9VwSLg3joZ6NVyENFE9WQ9FUUFbpNss2HXS1/PeFlMZaWnp7UbA9dLZZ3ykGUL6aZhcW5coQMf/tOY9eUtxFmYKSWu1G1/OLIusmnfFVxfcyQLnQTLMWexJMEaCyDnOYgmIv1Q0bQIkKKHEER11cVfE6CQJJ4nrLDdJqMThCCjlEVpNGCUIySKVb1JxocD0//ANQDouEfS8JajGqtKss0b//YrH45qq2D9SgCkrgzUDBr5hFHJftSHFyPqMKcb0UKGUiUhLU7W517kF0dj0W+1EcQFO6VosClY2TERSKUQoozhTUSFZQWyXuTlGg0EA6revCyAnk0xZLyMkvL98GUC6rHNt6UNaLIxNkLlAT2w5KMICCUJ8HlAtPRNI6xW13FtDkAwAFwVSEttZbybP1oNBIPunOAUochrizjZSgInPoYxRqR7mFXKCIKTQRSQM1tHZHjGigoqGoJK9uC6jh0cHsoFjxdTBYt23qCwQchmAOYM5PtOcElZCsVkpnUeR5VtyMzQsKqM7fXFYAuR2g2sUJDdRcJB3ULZqu3i65HVpDKwXqO1EM5wLlQpMhNFAnA32ieE7u5hVQbic0tTzb43qjw0lQUmtj7WJZQWnFSoGqax/MaVEEmoiksyhhmBXP0TpQq+B7WwxKwhY1MoJAuYUh6OtZLM9lycoLbgAFneIVACWVDRR0YSRJGp34oRv1OgEUdIolySu42/Hwlb8TAhrDMAlZntLFKP48yi4MpUA5GElKNBQ+elAAqLfz8/C8srLyoWrPqYWF1vn5H+123/z8/MLCwp6qPfPzbwf27Lk+P18uUPC1b9++PbWy0vr27fU9VR/Q9vz82sLCilLihYXLjYcPH255VXtYZ1EZoKhlaYpQQUGPNN9CtvwNTl2+rKZGzemlcmk4e2b7tAbtfFIeUFoKLz2Rl5nuq8kBiohKkisJCrU9cq+3zQ+q4LxeuUCVlNfTgaJfXmrncFNLiupB5V5wW0AX5sChwlTt/rftUacBVO+BwpV0vVZ5SABQ5yRsUd93DqIwRk3JU0ZQuUgVMHpQSEIPJbQcb+vrj9Rn1ZG8yvZJhy4vZczroQmVuZQEdX3qzfCCX7wFT+fPTd0eHR0erj18OLrZkgYqB6lCQOn2ugKBgOnb7T5fw7JEb4OskmHW5D5tnh5Ty/r98BRYWwuZFAnlNNTkwlklwqqRTRfGatJAZY9ThYDCq73iM9E4QTh+efw4OjOTnvdmCFaca1w23ORiy5QDVIQVYdfrcDiQek/0wQMopyuWiBEMVWgWJgUqh0nlB9XSgqaEx2SUG3LMBjv6JTnqUNwh7iJcDocDQPlZ0b5Mm10nTauPin1YU89W/SZ+re4vAFR8RgXFzszMvA7PhlLvmX/z5gGerCWHQqFUFqbBNAnTcDgDVPZWQl5QNZHI31xoMqsUYxhXZ3Wd1+vtmP07Hh9alpdvTTvr4CU0iZ+GTUGF0W463E2Hg8Fg2Epbg+gZ7wvClrJpRa/p+mC9ySnMQKGfjaIQKFmWvd7HCJQyY2FZkhP4Vjf00x/+8XVyhFOZzpAuikiPUTlMKj8olo2A1SBQLS0OJ0l6Oa6NlpCxU+vB/ls892QpHu9hxZemnkfz6wiKl6S9fDXHc6jnw5FoJ+xAh2CT471W3gudILJQ14O98w7Hosiyy7GYl0dT/lyNjY1gRNBzUUBJIyybAmVeuTPFgMqbKQZQLO90hnFfGA1lennU30OgVuVwMCTgUQ/o7i2YWhTNBzEojvZW03SYD1thB93Bg5fx1SQ8krAZ5K1wJMibnsEEVBz6n49+++33UDQZei8kgGJq5yKR6idPwgCKYpBFQTdeZ1GFgsrqe3nnHiBQdXRQ6ar3QA/0iDfYrYCKSfQyAgWnmYB+YD5QZDAIsABUOFzNAR2yHh0j18NhL4/eQa6b+q4JKDSpPeSyPAOLQkliBRRE9r5QAEDNh0KvoALmLwkqqKpfM+tqVyIBQT8TVPZ6rxBQw+vVGigPTasWhZahFAOqGvmYFWUdvPU0TXbQXi+AQpthZGCctVBQaJlEoO7JIJsCpQQst9N5BH4Bp/Mx/Cok15kEtYGGymdS2UH0Iv5QXjWLUUUHKSOo5LgrAlWfBIXm4FMKqNUcoNZRtaa6HpiTFbyPrIZQjoZEwdnA9bwIEV3tNeVkAgpP/g8IQgoU8mY0++XJHXA9cGTS6+WDJJkCdWq9IzjbtraGmvjLM6G1Oy44B31rra8YUFmClBEUx4czQeFVHQgUNFp6coCqD4et68iirPVhBCoIkNaBDlSDfAeNHA4ieTGg8OhlQODSQYlrgYA5KCgk55X6AVR8tn8IOjANn0h092xbMaDyTU1UQSkW5deDQmsVMChJknKAQgqvo1oPVG2tV4J5N3qCfVZkcUG0wRUMCo3JmYFi3YJwJBso8HoEKtE/+0pwd1WtSHTb+utiQOWdFaxZ1NPhixooChxAjmNQykICc1AaMeXRvFGa7YApKDzKawqKw4sqTEHVh7sxqClpKiQ4HRawqA7+/DaBEtyXOBWUHKDwWkYmLyi1Ia41vHWtcrSRbLibR3IzUPDFEpEH1LrXCAqqIAzKJUuJFCiuOFBZGmMmrvePS2qM6iCFAIWbdvlBfbQyQKFMVD5Q8EPwZqASkhQPOd0vfL/KRYPKs3KhRkTrq43BvIMHUMjz0kBti6T06dMot5kTlFNAlYMZKIBspQDURKSreIvKsxbG5rIQPGdsHiBQaPUXoQc1XF1dV1etnwB22kwdmtK3Va0jKS9RRzDYZxyPQks+GQWUaApqNm55bQaKBlAyVAMhwT0hrpQAyrx5rwNF8SYWtYzWpSNQPAYFZpeR4dWmteQ6xOfTtHGEcxkv4MegLg220yagLJZHZqCCs44Z8DxsUSWByr0MzWZvtJtYVB/8rmiWN7rPDpRqZWVleIsmrmTIaQB1EFqbMyoo3n3JBFTwTt9pM1C807Es0fDb5gKVM8WQG9Q3AMothHESradTEKyS3CE439CyhEaAQ/3hoCTRJ2Vp2yYfGEGd8MgP0RcHOt2DpPupLMmPBWFWlrtRO8ot9Evy0OJiH+wW3JmgaHw3iVyulxOUmUlpwfzdiXc3btx4dv36r0ePHoVX169f//HGDd+hb56jlILvxo1f0YKMa9fKZFG9hxqfowVB8MXvoUDXQ9ehTD8+v7545mgTvFqEcn748F7ZfdYISnggSVEA5RQAVJZaL3d+LyeomlQ6T3nxaWrxHh5MTaXVygQqOYqrDIPX2FKlUcppMywtTIJyc1YpLAj1sgzGGJoNA6jHjzsEE1A5OZmF8+LzemUGVURer+r9xsb1zcCpjcbnrw4cOGDv6zt6dKDv2bONG8WCMjEpbczcfLw5U3Vlcr2GwqXLwiRzy4oxqr7xacaYeb7bM2ealCELkxpkRik89TFjALpMoA6ajn/jImcUqfgsTN576eYCpe0UxblahgndudOXGf+pJ2UDRdTWtqT/tIxuB0oM4Tenpk8TDfAf/tegPqMHoiHD9fJxyjQpU1DojqwMFQiHH6V2Rjc30VqwWCxWt02cMkHV/i0i6pdbwgvowyWS73FNO39LA2WehTEZM88LKvNm2gZQroRLBfVgZubR7KwGKvHmzTw8SZK0XQaVHqPwqK8f7IplRXwTKuqaKLaijjIudzQa5cjpNFCFZmEKuIt1ui8ZQc3I8hRDoaIdkeW2ajeao6uEAfgp0TIrq5UuEyjf27fzIgYlojVfSVC0alHxxGpMAbU8NXWiWFD5OZncKFoPCpr+50KhEICaj8XaeDzr2263w655ZT1aGUGJkduialGRBhSaNFBoDe/U8hRJTsNP6JFkPSiXQzfZ43c4imWAKuhPEqSZlAEUuvXQ5m/TTj+aOiOpoCJiZAEvtpqCCFBGUKyIQFmw68EvtezxfKmCYhr9PV2y5IGPNDbap6w6UAzl+OXvmzMz+NKi0UfTzpmZeEYWprD7x1PZQUWhBxxyWKIsmjBKq6Bg43YgAKCQrVnpsoF6uQL9X79i30oi70sWg6KoxiN0K20FUG4xMneO1kBRdp9vNhyWJXyO7pOnSV6S3wYCac2DgjilOZ8BFBrZcDjJOr8RFHsZr0rrdjqFDt6bvtJnu0DJ8rmR9oudTgGNgQl8vQoK+nLcZY+sgsIl1UBZrg28d/PdtBVVfxS+ga+VbouMGEEV/AcJsoKyWqUZh5Mjk6DIr2SUeBEX1tYQKJ4kAZS3XKDoc4Pu78B+ESin0wDq1snbUiaoqj+tj/R0ufkh2sNzo/4qlFdAoMQ0UIVyMjifHhS+haPeotDNmqwAaiPwbGdACQooMRANGUCJYpdsYlGt8g/shAJKOOV7kQT1lDeAKuIvXDDmoHCm0wQUe1kQdhRUhkWh+2MkQQ151zVQIwhUNwI1OseikUfSy3dwnQZQhXPSk9KDwplOU1B4xcdOguL4rKBOrs+eSA2zjKQs6ku7D1kUlLiDNIAq7s8VMSagcKaTyA2qzdtRtmCuj1E5QJ3r70+C2nDrLEr006agiuKkkdKBSki0h8gNCk1xKVfzAECJYo87PygtmOstapTtSbqeAVTRf/+KyQDlwfmWHKCcZQfF9rjdXOGgDBalgOLDwTZeD6pYTsm6TwOF726bC1Q4ZOkrY4NTAXWJHdRAiYWB0lmUgGo9PaiS/qiTEVRCsqI/AIFAfTf81AyUwxIoN6iJUbG9aFA6i2LbaSOoUjhho9JATSkjGABq+JJ70Mz17gSelN31hr8bToF6brG0SgXEKA1UWxooptS/EkbpQC3TD1fRCo5pN3nJ/ftzshx0ur2yjFrmg51CtyyHFxd/lGS5fF2YIxF2YmRiBEDxbqdVlhEoKIaz8zxqcMq04O5k2Ui9rFlUJwIlhCU41C72yPLrf7RLUlDQLKpETkgpUMeOLR7bd+zY5+/fv29qOuNbXPwVXi0uLsLGF+/f/wrbHz58gO06bpvkdGgDlNS+3sVFX1NT0xdffIEecUneff31C1wstAu2cUmboKTJMfOVjQ9njm5s9G2+2th4f+bo5uaPXSubm30bG83JvmApcn2j6N+xPjtTqH6/XfqfxW80vSu4PEifKRdRdeZMU2pfk/4NyvF/foLP7coPRy/qk99hfVKkflcWFVuqIsr+SZGgKqqooooqqqiiiiqqqKKKKqqooooqqqiindD/AvQp44D7CFeaAAAAAElFTkSuQmCC" alt="ML Recommendation System">
+                </div>
+                <div class="project-content">
+                    <h3>Library Management</h3>
+                        <p>Built a full-stack Library Management System to streamline book lending, user management, and inventory tracking. The system supports user authentication, role-based access (admin/librarian/student), book search and categorization, issuing/returning of books, and overdue fine tracking. Developed using Node.js, Express, MongoDB, and HTML, CSS and JavaScript for the frontend.</p>
+                    <div class="project-links">
+
+                        <a href="https://github.com/rajesh08114/full_stack_libry"><i class="fab fa-github"></i> View Code</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Education Section -->
+    <section id="education">
+        <h2>Education</h2>
+        <div class="education-item">
+            <div class="education-header">
+                <h4>SRKR Engineering College, Bhimavaram</h4>
+                <span>2024 - 2027</span>
+            </div>
+            <p>Bachelor of Technology in Artificial Intelligence and Machine Learning</p>
+        
+        </div>
+
+        <div class="education-item">
+            <div class="education-header">
+                <h4>St. Mary's Group of Institutions, Guntur</h4>
+                <span>2021 - 2024</span>
+            </div>
+            <p>Diploma in Artificial Intelligence and Machine Learning</p>
+            
+            
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+   <!-- Skills Section -->
+<!-- Skills Section -->
+<section id="skills">
+    <h2>Skills</h2>
+    <div class="skills-container">
+        <!-- Frontend Development -->
+        <div class="skill-category">
+            <h3>Frontend Development</h3>
+            <div class="skill-list">
+                <div class="skill-item">
+                    <i class="fab fa-angular"></i>
+                    <span>Angular</span>
+                </div>
+                <div class="skill-item">
+                    <i class="fab fa-react"></i>
+                    <span>React.js</span>
+                </div>
+                <div class="skill-item">
+                    <i class="fas fa-code-branch"></i>
+                    <span>Redux</span>
+                </div>
+                <div class="skill-item">
+                    <i class="fab fa-js"></i>
+                    <span>Next.js</span>
+                </div>
+                <div class="skill-item">
+                    <i class="fab fa-js"></i>
+                    <span>JavaScript</span>
+                </div>
+                <div class="skill-item">
+                    <i class="fab fa-html5"></i>
+                    <span>HTML5</span>
+                </div>
+                <div class="skill-item">
+                    <i class="fab fa-css3-alt"></i>
+                    <span>CSS3</span>
+                </div>
+                <div class="skill-item">
+                    <i class="fas fa-wind"></i>
+                    <span>Tailwind CSS</span>
+                </div>
+                <div class="skill-item">
+                    <i class="fab fa-bootstrap"></i>
+                    <span>Bootstrap</span>
+                </div>
+                <div class="skill-item">
+                    <i class="fas fa-code"></i>
+                    <span>jQuery</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Core Competencies -->
+        <div class="skill-category">
+            <h3>Core Competencies</h3>
+            <div class="skill-list">
+                <div class="skill-item">
+                    <i class="fas fa-lightbulb"></i>
+                    <span>Problem-solving</span>
+                </div>
+                <div class="skill-item">
+                    <i class="fas fa-broom"></i>
+                    <span>Clean code practices</span>
+                </div>
+                <div class="skill-item">
+                    <i class="fas fa-users"></i>
+                    <span>Team collaboration</span>
+                </div>
+                <div class="skill-item">
+                    <i class="fas fa-project-diagram"></i>
+                    <span>DSA</span>
+                </div>
+                <div class="skill-item">
+                    <i class="fas fa-plug"></i>
+                    <span>API integration</span>
+                </div>
+                <div class="skill-item">
+                    <i class="fab fa-git-alt"></i>
+                    <span>Git</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Backend Development -->
+        <div class="skill-category">
+            <h3>Backend Development</h3>
+            <div class="skill-list">
+                <div class="skill-item">
+                    <i class="fab fa-node-js"></i>
+                    <span>Node.js</span>
+                </div>
+                <div class="skill-item">
+                    <i class="fas fa-server"></i>
+                    <span>Express.js</span>
+                </div>
+                <div class="skill-item">
+                    <i class="fab fa-python"></i>
+                    <span>Python</span>
+                </div>
+                <div class="skill-item">
+                    <i class="fab fa-java"></i>
+                    <span>Java</span>
+                </div>
+                <div class="skill-item">
+                    <i class="fas fa-network-wired"></i>
+                    <span>RESTful API design</span>
+                </div>
+                <div class="skill-item">
+                    <i class="fas fa-key"></i>
+                    <span>JWT</span>
+                </div>
+                <div class="skill-item">
+                    <i class="fas fa-lock"></i>
+                    <span>OAuth 2.0</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Databases & Storage -->
+        <div class="skill-category">
+            <h3>Databases & Storage</h3>
+            <div class="skill-list">
+                <div class="skill-item">
+                    <i class="fas fa-database"></i>
+                    <span>MongoDB</span>
+                </div>
+                <div class="skill-item">
+                    <i class="fas fa-database"></i>
+                    <span>Mongoose</span>
+                </div>
+                
+                <div class="skill-item">
+                    <i class="fas fa-database"></i>
+                    <span>MySQL</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+    <!-- Contact Section -->
+    <section id="contact">
+        <h2>Contact Me</h2>
+        <div class="contact-container">
+            <div class="contact-info">
+                <div class="contact-card">
+                    <i class="fas fa-envelope"></i>
+                    <a href="mailto:challarajesh033@gmail.com">challarajesh033@gmail.com</a>
+                </div>
+                <div class="contact-card">
+                    <i class="fas fa-phone"></i>
+                    <a href="tel:+919494949494">+91 9494949494</a>
+                </div>
+                <div class="contact-card">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span>Andhra Pradesh, India</span>
+                </div>
+                
+                <div class="social-links">
+                    <a href="https://www.linkedin.com/in/challa-rajesh-56751b275" class="social-link" target="_blank">
+                        <i class="fab fa-linkedin-in"></i>
+                    </a>
+                    <a href="https://github.com/rajesh08114" class="social-link" target="_blank">
+                        <i class="fab fa-github"></i>
+                    </a>
+                    <a href="https://www.instagram.com/mr.__devil__03" class="social-link" target="_blank">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="#" class="social-link" target="_blank">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                </div>
+            </div>
+
+            <div class="contact-form">
+                <form id="contactForm">
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="subject">Subject</label>
+                        <input type="text" id="subject" name="subject" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" name="message" rows="5" required></textarea>
+                    </div>
+                    <button type="submit" class="submit-btn">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <h3>CHALLA RAJESH</h3>
+            <p>Web Developer | Machine Learning Enthusiast</p>
+            <div class="footer-links">
+                <a href="#about">About</a>
+                <a href="#experience">Experience</a>
+                <a href="#projects">Projects</a>
+                <a href="#contact">Contact</a>
+            </div>
+            <div class="copyright">
+                &copy; <span id ="date">2024</span> All Rights Reserved
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scroll to Top Button -->
+    <div class="scroll-indicator" id="scrollToTop">
+        <i class="fas fa-arrow-up"></i>
+    </div>
+
+    <!-- JavaScript -->
+    <script>
+        // Header scroll effect
+        const header = document.getElementById('header');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 100) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // Scroll to top button
+        const scrollToTopBtn = document.getElementById('scrollToTop');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                scrollToTopBtn.classList.add('active');
+            } else {
+                scrollToTopBtn.classList.remove('active');
+            }
+        });
+
+        scrollToTopBtn.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        // Animate skill bars when they come into view
+        const skillBars = document.querySelectorAll('.skill-progress');
+        
+        const animateSkillBars = () => {
+            skillBars.forEach(bar => {
+                const barPosition = bar.getBoundingClientRect().top;
+                const screenPosition = window.innerHeight / 1.3;
+                
+                if (barPosition < screenPosition) {
+                    const width = bar.parentElement.previousElementSibling.querySelector('.skill-percent').textContent;
+                    bar.style.width = width;
+                }
+            });
+        };
+
+        window.addEventListener('scroll', animateSkillBars);
+        window.addEventListener('load', animateSkillBars);
+
+        // Form submission
+        const contactForm = document.getElementById('contactForm');
+        contactForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            // Here you would typically send the form data to a server
+            // For demonstration, we'll just show an alert
+            alert('Thank you for your message! I will get back to you soon.');
+            contactForm.reset();
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Animate elements when they come into view
+        const animateOnScroll = () => {
+            const elements = document.querySelectorAll('.project-card, .education-item, .skill-category');
+            
+            elements.forEach(element => {
+                const elementPosition = element.getBoundingClientRect().top;
+                const screenPosition = window.innerHeight / 1.3;
+                
+                if (elementPosition < screenPosition) {
+                    element.style.opacity = '1';
+                    element.style.transform = 'translateY(0) scale(1)';
+                }
+            });
+        };
+
+        window.addEventListener('scroll', animateOnScroll);
+        window.addEventListener('load', animateOnScroll);
+        document.getElementById('date').textContent = new Date().getFullYear();
+
+    </script>
+</body>
+</html>
